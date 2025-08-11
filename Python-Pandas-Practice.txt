@@ -1,0 +1,67 @@
+# 📊 Pandas Modifying Data – Practice Questions
+
+This repository contains Python examples for **Pandas DataFrame modification**.  
+The exercises are designed to practice common DataFrame operations such as adding columns, updating values, renaming columns, and applying conditions.
+
+---
+
+## 📌 Questions Covered
+
+1. Add a column **Bonus** that is 10% of the "Salary".
+2. Add a column **Work Status** — if Salary > 30000 then "High Paid", else "Low Paid".
+3. In the "city" column, replace **Delhi** with **Delhi NCR**.
+4. In the "Age" column, add **+2** to all values less than 20.
+5. Create a column **Annual Salary** by multiplying "Salary" by 12.
+6. Convert all names in the "Name" column to uppercase.
+7. Rename the "city" column to **Location**.
+8. For the row where **Name** is "Ved", set "Salary" to 50000 (using `.loc`).
+
+---
+
+Now Here Code 
+
+import pandas as pd 
+
+data = {
+    "Name": ["Ved","Om","Virat","Rohit","Ms"],
+    "Age":[20,21,22,19,45],
+    "city":["Pune", "Lko", "Delhi","Delhi","Mumbai"],
+    "Salary":[40000,33440,20021,23044,23430],
+
+}
+df = pd.DataFrame(data)
+print(df)
+
+print("\033[0;31m Add a column Bonus that is 10% of the Salary.\033[0m")
+# print("\033[1;33mAdd a column Bonus that is 10% of the Salary\033[0m")
+# print("Add a column Bonus that is 10% of the Salary")
+df["Bonus"] = df["Salary"] * 0.1
+print(df)
+
+print("\033[0;31m Add a column Work Status — if Salary > 3000 then High Paid, else Low Paid.\033[0m")
+df["Work Status"] = ["High Paid" if Salary > 30000 else "Low Paid" for Salary in df["Salary"]]
+print(df)
+
+print("\033[0;31m In the city column, replace delhi with Delhi NCR.\033[0m")
+df["city"] =df["city"].replace("Delhi","Delhi NCR")
+print(df)
+
+print("\033[0;31m In the Age column, add +2 to all values less than 20.\033[0m")
+df.loc[df["Age"]<20,"Age"]+=2
+print(df)
+
+print("\033[0;31m Create a column Annual Salary by multiplying Salary by 12.\033[0m")
+df["Annual salary"] = df["Salary"] *12
+print(df)
+
+print("\033[0;31m Convert all names in the Name column to uppercase.\033[0m")
+df["uppercase Name"] = df["Name"].str.upper()
+print(df)
+
+print("\033[0;31m Rename the city column to Location.\033[0m")
+df.rename(columns={"city":"Location"},inplace=True)
+print(df)
+
+print("\033[0;31m For the row where Name is Ved, set Salary to 5000 (using .loc).\033[0m")
+df.loc[df["Name"]=="Ved","Salary"]=50000
+print(df)
