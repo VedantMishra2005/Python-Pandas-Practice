@@ -1,0 +1,50 @@
+ExpensesList = []
+print(" Welcome to Expense Tracker ")
+
+while True:
+    print("====Menu====")
+    print("1.Add Expense")
+    print("2.View All Expenses")
+    print("3.View Total Kharcha")
+    print("4.Exit")
+
+    choice = int(input("Please Enter Your Choice : "))
+
+    if choice == 1:
+        Date = input("Enter Date : ")
+        category = input("Enter the category (Ex: Food, Travel, Makeup, Books): ")
+        Description = input("Write Details: ")
+        Amount = float(input("Enter the Amount: "))
+
+        expenses = {
+            "Date": Date,
+            "category": category,
+            "Description": Description,
+            "Amount": Amount
+        }
+
+        ExpensesList.append(expenses)
+        print("\nExpense added successfully!\n")
+
+    elif choice == 2:
+        if len(ExpensesList) == 0:
+            print("No Expenses Added. Jao pahle kharcha kro. ")
+        else:
+            print("==== Ye aapka sara expenses ====")
+            count = 1
+            for eachkharcha in ExpensesList:
+                print(f"Kharcha Number {count} -> {eachkharcha['Date']}, {eachkharcha['category']}, {eachkharcha['Description']}, {eachkharcha['Amount']}")
+                count += 1
+
+    elif choice == 3:
+        total = 0
+        for eachkharcha in ExpensesList:
+            total += eachkharcha["Amount"]
+        print("\nTotal Kharcha = ", total)
+
+    elif choice == 4:
+        print("Dhanywad aapne hamara system use kiya!")
+        break
+
+    else:
+        print("INVALID CHOICE. TRY AGAIN")
